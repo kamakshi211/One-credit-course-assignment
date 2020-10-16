@@ -1,8 +1,11 @@
 #include<stdio.h>
-
+#include<sys/time.h>
 int main()
 {
 	int m,n,i,j,k;
+	struct timeval t1,t2;
+	int numThreads=0;
+	numThreads=omp_get_num_threads();
 	printf("Enter number of rows and columns of first matrix");
 	scanf("%d%d",&m,&n);
 	int a[m][n],b[m][n],p[m][n];
@@ -15,7 +18,8 @@ int main()
 	for(i=0;i<m;i++)
 		for(j=0;j<n;j++)
 			scanf("%d',&b[i][j]);
-	
+	gettimeofday(&t1,0);
+	printf("Product matrix is");
 	#pragma omp parallel
 	for(i=0;i<m;i++)
 	{
@@ -31,7 +35,9 @@ int main()
 		}
 		printf("\n");
 	}
-	
+gettimeofday(&t2,0);
+double elapsed = (double)(t2.tv_sec-t1.tv_sec)+(double)(t2.tv_usec-t1.tv_usec)*1.e-6;
+printf("elapsed time =%f seconds.\n",elapsed);		
 return 0;
 	
 }
