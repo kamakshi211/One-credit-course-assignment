@@ -17,7 +17,7 @@ int main()
 	printf("Enter the second matrix");
 	for(i=0;i<m;i++)
 		for(j=0;j<n;j++)
-			scanf("%d',&b[i][j]);
+			scanf("%d",&b[i][j]);
 	gettimeofday(&t1,0);
 	printf("Product matrix is");
 	#pragma omp parallel
